@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="WeatherApp">
+<head>
+    <title>Weather Dashboard</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="weatherController.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+             background-color: #d4f7d4;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" ng-controller="WeatherController">
+        <h1>Weather Dashboard</h1>
+        <input type="text" ng-model="cityName" placeholder="Enter city name" />
+        <button ng-click="getWeather()">Get Weather</button>
+        <div class="card" ng-if="weatherData">
+            <h2>Weather in {{weatherData.name}}</h2>
+            <p><strong>Temperature:</strong> {{weatherData.main.temp}}°C</p>
+            <p><strong>Humidity:</strong> {{weatherData.main.humidity}}%</p>
+            <p><strong>Condition:</strong> {{weatherData.weather[0].description}}</p>
+        </div>
+        <p class="error" ng-if="error">{{error}}</p>
+    </div>
+</body>
+</html>
